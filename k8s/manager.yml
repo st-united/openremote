@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: manager-service
+spec:
+  selector:
+    app: manager
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: manager
+spec:
+  replicas: 1
+  serviceName: manager-service
+  selector:
+    matchLabels:
+      app: manager
+  template:
+    metadata:
+      labels:
+        app: manager
+    spec:
+      containers:
+        - name: manager
+          image: openremote/manager:latest
+          envFrom:
+            - secretRef:
+                name: manager-environment
+          ports:
+            - containerPort: 8080
