@@ -8,8 +8,12 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 80
+      targetPort: 80
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 443
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -33,4 +37,5 @@ spec:
             - secretRef:
                 name: keycloak-environment
           ports:
-            - containerPort: 8080
+            - containerPort: 80
+            - containerPort: 443

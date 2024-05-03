@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: madeindanang-ingress
+  name: openremote-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
@@ -12,6 +12,9 @@ spec:
     - hosts:
         - openremote.wewatt.vn
       secretName: openremote-tls-secret
+    - hosts:
+        - keycloak.wewatt.vn
+      secretName: keycloak-tls-secret
   rules:
     - host: openremote.wewatt.vn
       http:
@@ -20,6 +23,16 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: openremote-service
+                name: manager-service
+                port:
+                  name: http
+    - host: keycloak.wewatt.vn
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak-service
                 port:
                   name: http
