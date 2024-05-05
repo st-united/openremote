@@ -38,7 +38,7 @@ secretGenerator:
       - KC_DB_USERNAME=postgres
       - KC_DB_PASSWORD=sYWWTQgslE
       # Configure web server
-      - KC_HOSTNAME=keycloak.wewatt.vn
+      - KC_HOSTNAME=openremote.wewatt.vn
       - KC_HOSTNAME_PORT=-1
       - KC_HTTP_PORT=80
       - KC_HTTPS_PORT=443
@@ -149,7 +149,7 @@ secretGenerator:
       - OR_KEYCLOAK_PATH=auth
 
       # Keycloak public URI (only set this if keycloak is not on the same base URI as the manager i.e. not accessible at /auth)
-      - OR_KEYCLOAK_PUBLIC_URI=https://keycloak.wewatt.vn/auth
+      # - OR_KEYCLOAK_PUBLIC_URI=https://keycloak.wewatt.vn/auth
 
       # Location of built in web content.
       - OR_APP_DOCROOT=/opt/web
