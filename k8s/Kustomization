@@ -6,13 +6,8 @@ resources:
   - postgresql.yml
   - keycloak.yml
   - manager.yml
-  # - proxy.yml
 
 secretGenerator:
-  - name: proxy-environment
-    literals:
-      - DOMAINNAME=openremote.wewatt.vn
-      - MANAGER_HOST=manager-service
   - name: postgresql-environment
     literals:
       - TZ=Europe/Amsterdam
@@ -50,7 +45,7 @@ secretGenerator:
 
       # Configure main user credentials (only on first startup)
       - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=secret
+      - KEYCLOAK_ADMIN_PASSWORD=sY9fEWWT34225Qgs1lEds
       # Custom startup options (see keycloak documentation)
       - KEYCLOAK_START_COMMAND=start
       # - KEYCLOAK_START_OPTS=${KEYCLOAK_START_OPTS:-}
@@ -70,7 +65,7 @@ secretGenerator:
 
       # The password for the super user (admin) of the master realm (must match keycloak password if using
       # the keycloak identity provider).
-      - OR_ADMIN_PASSWORD=secret
+      - OR_ADMIN_PASSWORD=sY9fEWWT34225Qgs1lEds
 
       # This value is passed to SetupTasks can be used to determine what assets etc. should be setup for this deployment
       # the available values and general use of this is dependent on the actual SetupTasks available in the instance
