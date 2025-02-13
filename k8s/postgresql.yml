@@ -34,3 +34,27 @@ spec:
                 name: postgresql-environment
           ports:
             - containerPort: 5432
+
+          # Kiểm tra container có hoạt động bình thường không (liveness)
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - "pg_isready -U postgres -d openremote"
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          # Kiểm tra container đã sẵn sàng phục vụ truy vấn chưa (readiness)
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - "pg_isready -U postgres -d openremote"
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
